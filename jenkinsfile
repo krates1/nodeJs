@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        GITHUB_KEY = credentials('shemmy')
+        GITHUB_KEY = credentials('kalli')
     }
     stages{
         stage("testing"){
@@ -19,14 +19,15 @@ pipeline{
             steps{
                 echo "Trying to get into Ec2 Instance..."
                 sh  '''
-                    sudo ssh -i /var/lib/jenkins/shemmy.pem -t -o StrictHostKeyChecking=no ubuntu@ec2-18-134-155-120.eu-west-2.compute.amazonaws.com
-                    cd /var/www
-                    sudo rm -rf html
-                    sudo mkdir html
-                    cd html
+                    sudo ssh -i /var/lib/jenkins/kalli.pem -t -o StrictHostKeyChecking=no ubuntu@ec2-13-40-216-111.eu-west-2.compute.amazonaws.com
+                    sudo rm -rf node
+                    sudo mkdir node
+                    cd node
                     sudo git init
-                    sudo git remote add origin https://$GITHUB_KEY_USR:$GITHUB_KEY_PSW@github.com/krates1/metal.git
+                    sudo git remote add origin https://$GITHUB_KEY_USR:$GITHUB_KEY_PSW@github.com/krates1/nodeJs
                     sudo git pull origin master
+                    sudo npm install
+                    sudo npm start
                     '''
             }
         }
