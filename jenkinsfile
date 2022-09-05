@@ -24,7 +24,7 @@ pipeline{
                     sudo mkdir node
                     cd node
                     sudo git init
-                    sudo git remote add origin https://$GITHUB_KEY_USR:$GITHUB_KEY_PSW@github.com/krates1/nodeJs
+                    sudo git remote add origin https://$GITHUB_KEY_USR:$GITHUB_KEY_PSW@github.com/krates1/nodeJs.git
                     sudo git pull origin master
                     sudo npm install
                     sudo npm start
